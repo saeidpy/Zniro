@@ -1,0 +1,217 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    { "url": "http://localhost:4000", "description": "", "variables": {} }
+  ],
+  "info": {
+    "version": "e2d4dbf4-bbe7-4c91-bd2b-09723fc659d5",
+    "title": "Z Niro API",
+    "description": "",
+    "termsOfService": "",
+    "contact": {},
+    "license": { "name": "" }
+  },
+  "paths": {
+    "/users/register": {
+      "post": {
+        "summary": "register",
+        "operationId": "register",
+        "parameters": [],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "example": {
+                  "firstName": "saeid",
+                  "lastName": "gohari",
+                  "email": "test@gmail.com",
+                  "state": "kerman",
+                  "city": "kerman",
+                  "phoneNumber": "09138263167",
+                  "password": "admin"
+                }
+              },
+              "example": {
+                "firstName": "saeid",
+                "lastName": "gohari",
+                "email": "test@gmail.com",
+                "state": "kerman",
+                "city": "kerman",
+                "phoneNumber": "09138263167",
+                "password": "admin"
+              }
+            }
+          }
+        },
+        "tags": ["Auth"]
+      }
+    },
+    "/users/authenticate": {
+      "post": {
+        "summary": "authenticate",
+        "operationId": "authenticate",
+        "parameters": [],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "example": { "phoneNumber": "09138263167", "password": "admin" }
+              },
+              "example": { "phoneNumber": "09138263167", "password": "admin" }
+            }
+          }
+        },
+        "tags": ["Auth"]
+      }
+    },
+    "/users/current": {
+      "get": {
+        "summary": "getUser",
+        "operationId": "getUser",
+        "parameters": [],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "tags": ["Auth"]
+      }
+    },
+    "/devices/create": {
+      "post": {
+        "summary": "createDevice",
+        "operationId": "createDevice",
+        "parameters": [],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "example": {
+                  "name": "new device",
+                  "location": "kerman",
+                  "phoneNumber": "0911111111",
+                  "description": "new description"
+                }
+              },
+              "example": {
+                "name": "new device",
+                "location": "kerman",
+                "phoneNumber": "0911111111",
+                "description": "new description"
+              }
+            }
+          }
+        },
+        "tags": ["Device"]
+      }
+    },
+    "/devices/": {
+      "get": {
+        "summary": "getAllDevice",
+        "operationId": "getAllDevice",
+        "parameters": [],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "tags": ["Device"]
+      }
+    },
+    "/client-device/create": {
+      "post": {
+        "summary": "createClientDevice",
+        "operationId": "createClientDevice",
+        "parameters": [],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "example": {
+                  "name": "test client",
+                  "deviceId": "{{deviceId}}",
+                  "description": "test description",
+                  "unitName": "test unit name"
+                }
+              },
+              "example": {
+                "name": "test client",
+                "deviceId": "{{deviceId}}",
+                "description": "test description",
+                "unitName": "test unit name"
+              }
+            }
+          }
+        },
+        "tags": ["Client Device"]
+      }
+    },
+    "/client-device/{deviceId}": {
+      "get": {
+        "summary": "getAllClientDevice",
+        "operationId": "getAllClientDevice",
+        "parameters": [{ "$ref": "#/components/parameters/deviceId" }],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "tags": ["Client Device"]
+      }
+    },
+    "/users/": {
+      "get": {
+        "summary": "getUsers(admin)",
+        "operationId": "getUsers(admin)",
+        "parameters": [],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "tags": ["Admin"]
+      }
+    },
+    "/users/{userId}": {
+      "delete": {
+        "summary": "deleteUser(admin)",
+        "operationId": "deleteUser(admin)",
+        "parameters": [{ "$ref": "#/components/parameters/userId" }],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "tags": ["Admin"]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "noauth": { "type": "http", "scheme": "noauth" },
+      "bearer": { "type": "http", "scheme": "bearer" }
+    },
+    "parameters": {
+      "deviceId": {
+        "name": "deviceId",
+        "in": "path",
+        "required": true,
+        "style": "simple",
+        "schema": { "type": "string", "example": "deviceId" }
+      },
+      "userId": {
+        "name": "userId",
+        "in": "path",
+        "required": true,
+        "style": "simple",
+        "schema": { "type": "string", "example": "userId" }
+      }
+    }
+  },
+  "security": [
+    { "noauth": [] },
+    { "noauth": [] },
+    { "bearer": [] },
+    { "bearer": [] },
+    { "bearer": [] },
+    { "bearer": [] },
+    { "bearer": [] },
+    { "bearer": [] },
+    { "bearer": [] }
+  ],
+  "tags": [],
+  "externalDocs": { "url": "", "description": "" },
+  "warnings": []
+}
